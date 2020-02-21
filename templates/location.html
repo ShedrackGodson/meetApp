@@ -1,40 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
 <body>
-
-<p>Click the button to get your coordinates.</p>
-
-<button onclick="getLocation()">Try It</button>
-
-<p id="demo"></p> <br>
-<p>Based on IP address:</p>
-<p>{{ lat }}</p>
-<p>{{ lon }}</p>
-
-<script>
-var x = document.getElementById("demo");
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
-  
-}
-// function showPosition(position) {
-//   var latlon = position.coords.latitude + "," + position.coords.longitude;
-
-//   var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+"&zoom=14&size=400x300&sensor=false&key=AIzaSyAx4zBcZDQ9Msa2D1k8I9UzIjpSrxGeeo0";
-
-//   document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
-// }
-</script>
-
+   <form method="POST">
+       {% csrf_token %}
+        <h2>Create a Group</h2>
+        <br>
+        <input type="text" placeholder="Set your group's location" required> <br>
+        <input type="text" placeholder="Choose topics of your group" required> <br>
+        <p>SUggested groups based on the number of members</p> <br>
+        <input type="text" placeholder="A group must have a name"> <br>
+        <p>Review Terms & Conditions before Group Creation.</p>
+   </form>
 </body>
 </html>
