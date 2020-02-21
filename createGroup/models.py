@@ -24,6 +24,7 @@ class GroupDetails(models.Model):
     total_members = models.IntegerField()
     organizers = models.ManyToManyField(Organizer)
     group_about = models.CharField(max_length=255,null=False)
+    thumbnail = models.ImageField(verbose_name='Group Picture', null=False)
 
     def __str__(self):
         return self.group_name
