@@ -11,11 +11,20 @@
        {% csrf_token %}
         <h2>Create a Group</h2>
         <br>
-        <input type="text" placeholder="Set your group's location" required> <br>
-        <input type="text" placeholder="Choose topics of your group" required> <br>
-        <p>SUggested groups based on the number of members</p> <br>
-        <input type="text" placeholder="A group must have a name"> <br>
-        <p>Review Terms & Conditions before Group Creation.</p>
+        <input type="text" name="location" placeholder="Set your group's location" required> <br> <br>
+        <div class="city"><span>Your current location: </span> Loading...<span><a href="#">change</a></span></div> <br>
+        <input type="text" name="topics" placeholder="Choose topics of your group" required> <br>
+        <p>Suggested groups based on the number of members</p> <br>
+        <input type="text" name="name" placeholder="A group must have a name" required> <br>
+        <p>Review Terms & Conditions before Group Creation.</p> <br>
+        <input type="submit" value="Create">
    </form>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="type/javascript">
+        $.get("https://ipinfo.io",function(response){
+            $("#city").html("CITY: <b>"+response.city+"</b>");
+        }, 'jsonp');
+    </script>
 </body>
 </html>
