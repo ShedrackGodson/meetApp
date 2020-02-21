@@ -62,12 +62,17 @@ WSGI_APPLICATION = 'meetApp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# MySQL DB
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'meetapp',
+        'HOST': 'localhost',
+        'PASSWORD': 'magnifico23',
+        'USER': 'root'
     }
 }
+
 
 
 # Password validation
