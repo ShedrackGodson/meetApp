@@ -1,0 +1,14 @@
+asgiref==3.2.3
+certifi==2019.11.28
+chardet==3.0.4
+Django==3.0.3
+django-widget-tweaks==1.4.5
+geographiclib==1.50
+geopy==1.21.0
+idna==2.9
+mysqlclient==1.4.6
+Pillow==7.0.0
+pytz==2019.3
+requests==2.23.0
+sqlparse==0.3.0
+urllib3==1.25.8

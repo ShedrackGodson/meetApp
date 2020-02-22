@@ -21,7 +21,7 @@ class Organizer(models.Model):
 class GroupDetails(models.Model):
     group_name = models.CharField(max_length=255,null=False)
     group_location = models.CharField(max_length=255,null=False, blank=False)
-    total_members = models.IntegerField()
+    total_members = models.IntegerField(default=0)
     organizers = models.ManyToManyField(Organizer)
     group_about = models.CharField(max_length=255,null=False)
     thumbnail = models.ImageField(verbose_name='Group Picture', null=False)

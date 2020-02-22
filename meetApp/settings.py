@@ -25,7 +25,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'createGroup'
+    'createGroup',
+    'users',
+    'widget_tweaks',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -36,7 +39,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    # 'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 ROOT_URLCONF = 'meetApp.urls'
 
@@ -51,6 +62,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -119,3 +132,20 @@ STATICFILES_DIRS = [os.path.join(
 VENV_PATH = os.path.dirname(BASE_DIR)
 STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
 MEDIA_ROOT = os.path.join(VENV_PATH, 'media_root')
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'register'
+
+# Facebook Auth
+SOCIAL_AUTH_FACEBOOK_KEY = '123931219060215'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'b07dc7039c6c586c8b3b2eaf82a0ca5d' # secret key
+
+# Twitter Auth
+SOCIAL_AUTH_TWITTER_KEY = '1eb9CmB5u6W5QweJIwa3lpiIK'
+SOCIAL_AUTH_TWITTER_SECRET = 'IEj7hNw435j6PeZ9yYeIfRcffsV5YEYjTCZc1oTHOSC0zlKXZb'
+
+
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/settings/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/settings/'
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False

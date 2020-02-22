@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="full-height">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .bs-example{
+            margin: 0px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="bs-example">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <a href="{% url 'groupCreate' %}" class="navbar-brand">
+                <img src="{% static 'logo.png' %}" height="68" alt="MeetApp">
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <!-- <a href="#" class="nav-item nav-link active">Home</a> -->
+                    <!-- <a href="#" class="nav-item nav-link">Profile</a> -->
+                    <!-- <a href="#" class="nav-item nav-link">Messages</a> -->
+                    <!-- <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a> -->
+                </div>
+                <div class="navbar-nav ml-auto">
+                    <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
+                    <a href="{% url 'signup' %}" class="nav-item nav-link">Sign Up</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <hr style="margin-top: 0;">
+
+    {% comment %} <a href="{% url 'register' %}">Register</a> {% endcomment %}
+    {% comment %} <a href="{% url 'social:begin' 'facebook' %}">Sign Up</a>
+    <a href="{% url 'social:begin' 'twitter' %}">With Twitter</a>
+   <form method="POST" novalidate>
+       {% csrf_token %}
+       {{ form.as_p }} {% endcomment %}
+        <!-- <h2>Create a Group</h2>
+        <br>
+        <input type="text" name="location" placeholder="Set your group's location" required> <br> <br>
+        <div><span>Your current location: </span> <span id="city">Loading...</span><span><a href="#" style="margin-left: 3px;">change</a></span></div> <br>
+        <input type="text" name="topics" placeholder="Choose topics of your group" required> <br>
+        <p>Suggested groups based on the number of members</p> <br>
+        <input type="text" name="name" placeholder="A group must have a name" required> <br> -->
+        {% comment %} <p>Review Terms & Conditions before Group Creation.</p> <br>
+        <input type="submit" value="Create">
+   </form> {% endcomment %}
+
+   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>    
+    <script>
+        $.get("https://ipinfo.io",function(response){
+            $("#city").html("<b>"+response.city+","+response.country+"</b>");
+        }, 'jsonp');
+    </script>
+</body>
+</html>
