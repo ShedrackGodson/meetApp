@@ -21,7 +21,7 @@
 <body>
     <div class="bs-example">
         <nav class="navbar navbar-expand-md navbar-light bg-light">
-            <a href="{% url 'groupCreate' %}" class="navbar-brand">
+            <a href="{% url 'home' %}" class="navbar-brand">
                 <img src="{% static 'logo.png' %}" height="68" alt="MeetApp">
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -36,8 +36,21 @@
                     <!-- <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a> -->
                 </div>
                 <div class="navbar-nav ml-auto">
-                    <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
-                    <a href="{% url 'signup' %}" class="nav-item nav-link">Sign Up</a>
+                    {% if not request.user.is_authenticated %}
+                        <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
+                        <a href="{% url 'signup' %}" class="nav-item nav-link">Sign Up</a>
+                    {% else %}
+                        {% if twitter_login %}
+                            <a href="#" class="nav-item nav-link">{{ twitter_login.extra_data.access_token.screen_name }}</a>
+                        {% elif facebook_login %}
+                            <a href="{% url 'login' %}" class="nav-item nav-link">{{ user.picture }}</a>
+                            <div class="col-md-6 text-center">
+                                <img src="{{facebook_login.extra_data.picture.data.url}}" alt="" width="50" height="50" style="border-radius: 50%">
+                            </div>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="nav-item nav-link">{{ request.user.username }}</a>
+                        {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </nav>

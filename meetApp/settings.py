@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'createGroup',
+    'home',
     'users',
     'widget_tweaks',
     'social_django',
@@ -47,6 +47,20 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.twitter.TwitterOAuth',
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
+    # 'social_core.backends.facebook.FacebookOAuth2',
+)
+
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.user.get_username',
+    'social.pipeline.user.create_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details',
+    # 'users.pipeline.save_profile',
 )
 
 ROOT_URLCONF = 'meetApp.urls'
@@ -134,12 +148,24 @@ STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
 MEDIA_ROOT = os.path.join(VENV_PATH, 'media_root')
 
 LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home' # Redirection link when user logged in
 LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'register'
+LOGOUT_REDIRECT_URL = 'login' 
 
 # Facebook Auth
 SOCIAL_AUTH_FACEBOOK_KEY = '123931219060215'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = 'b07dc7039c6c586c8b3b2eaf82a0ca5d' # secret key
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+  'fields': 'id, name, email, picture.type(large), link'
+}
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_link']
+
+SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [
+    ('name', 'name'),
+    ('email', 'email'),
+    ('picture', 'picture'),
+    ('link', 'profile_url'),
+]
 
 # Twitter Auth
 SOCIAL_AUTH_TWITTER_KEY = '1eb9CmB5u6W5QweJIwa3lpiIK'

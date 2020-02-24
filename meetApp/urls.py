@@ -1,12 +1,12 @@
 from django.contrib import admin
 from django.urls import path, include
-from createGroup.views import groupCreate
+from home.views import home
 from users.views import password, settings
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", groupCreate, name="groupCreate"),
+    path("", home, name="home"),
     path("users/",include("users.urls")),
     path("oauth/", include("social_django.urls", namespace="social")),
     path("settings/", settings, name="settings"),
