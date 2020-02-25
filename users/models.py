@@ -16,7 +16,7 @@ class Profile(models.Model):
     location = models.CharField(max_length=255)
     hometown = models.CharField(max_length=255)
     bio = models.TextField(max_length=500, blank=True)
-    interests = models.ManyToManyField(Interest)
+    interests = models.ManyToManyField(Interest, related_name="interests")
     avatar = models.ImageField(verbose_name="Profile Image")
     birthdate = models.DateField(null=True, blank=True)
 

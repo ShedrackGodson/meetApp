@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="height: 80%;  border: 1px rgb(211, 206, 206) solid; width: 80%;margin-left: 10%;">
+        <h3 style="font-weight: bolder;margin-left: 15px; margin-top: 10px;">{{ user.username.title }}</h3>
+        <hr style="margin-top: 0; color: rgb(197, 195, 195); width: 70%; margin-left: 0;">
+        <div style="width: 230px; height: 200px;float: right; margin-right: 40px; margin-top: -50px; border: 1px rgb(211, 206, 206) solid;">
+            {% if facebook_login %}
+            <a href="#"><img data-toggle="tooltip" data-placement="bottom" title="Change your picture" src="{{facebook_login.extra_data.picture.data.url}}" alt="{{ user.name }}" height="100%" width="100%"></a>
+            {% endif %}
+        <div style="width: 230px; height: 200px;float: right; margin-right: 0px; margin-top: 0px;">
+            <span><a href="#" style="font-size: small; justify-content: center; margin-left: 20%;color: blue;">Change your picture</a></span>
+            <hr style="margin-top: 5px;">
+            <span style="margin-top: 20px;"><h5>Interests <span>.<a href="#" style="color: blue; font-size: small; margin-left: 4px;">Edit</a></span></h5></span>
+            <hr style="margin-top: 2px;">
+            {% if user_profile and request.user%}
+            {% for profile in user_profile %}
+            {% for interest in profile.interests.all %}
+                <span><a href="#" style="font-size: small; color: blue; margin-right: 2px;">{{ interest }}</a>.</span>
+            {% endfor %}
+            {% endfor %}
+            {% else %}
+                <span>Add Interests</span>
+            {% endif %} <br>
+            
+        </div>
+        </div>
+        <div style="width: 70%; height: 87%;">
+            <div style="float: left;width: 33%; margin: 1px; height: 20%;">
+                <p style="margin: 5px;">Location: <br>
+                <a href="#" style="color: blue; text-decoration: underline; font-size: 15.5px;"><span>{{ location }}</span></a>
+                </p>
+                <form method="POST">
+                {% csrf_token %}
+                <p style="margin-left: 5px;">Hometown: <span style="margin-left: 3px;text-decoration: underline;"><a href="#" style="color: blue;">Edit</a></span></p>
+                </form>
+            </div>
+            <div style="float: left;width: 33%; margin: 1px;height: 20%;">
+                <p style="margin: 5px;">Date Joined MeetApp: <br>
+                <span>December 25,2020</span> </p>
+            </div>
+            <div style="float: left;width: 33%; margin: 1px;height: 20%;">
+                <p>Add Later</p>
+            </div>
+            <div style="float: left; width: 100%; height: 25%; margin-top: 10px;">
+                <p style="margin: 5px;">Bio: <br> 
+                    Lorem ipsum dolor sit amet, consectetur adipudiandritatis eius, dicta soluta culpa, quo similique, facere delectus nostrum. #CodeIgniter
+                    <form method="POST">
+                        <span style="margin: 5px;"><a href="#" style="color: blue;text-decoration: underline;">Edit</a></span>
+                    {% csrf_token %}
+                    </form>
+                </p> <hr>
+                </div>
+            </div>
+        </div>
+        
+        <!-- <hr style="margin-top: 5; color: rgb(197, 195, 195); width: 70%; margin-left: 0;"> -->
+        <div  style="background-color: teal; width: 50px;">
+            <div style="background-color: tomato;"></div>
+            <div style="background-color: turquoise;"></div>
+        </div>
+    </div>
+{% endblock content %}

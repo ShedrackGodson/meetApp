@@ -1,0 +1,61 @@
+{% load static %}
+    <div class="bs-example">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <a href="{% url 'home' %}" class="navbar-brand ml-0">
+                <img src="{% static 'logo.png' %}" height="68" alt="MeetApp">
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <!-- <a href="#" class="nav-item nav-link active">Home</a> -->
+                    <!-- <a href="#" class="nav-item nav-link">Profile</a> -->
+                    <!-- <a href="#" class="nav-item nav-link">Messages</a> -->
+                    <!-- <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a> -->
+                </div>
+                <div class="navbar-nav ml-auto">
+                    {% if not request.user.is_authenticated %}
+                        <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
+                        <a href="{% url 'signup' %}" class="nav-item nav-link">Sign Up</a>
+                    {% else %}
+                        {% if twitter_login %}
+                        <div class="dropdown">
+                            <button class="nav-item nav-link dropbtn"><i class="glyphicon glyphicon-chevron-down">{{ twitter_login.extra_data.access_token.screen_name.title }}</i></button>
+                            <div class="dropdown-content">
+                                <a href="{% url "profile" %}">Profile</a>
+                                <a href="{% url "profile" %}">Settings</a>
+                                <a href="{% url "logout" %}">Logout</a>
+                            </div>
+                        </div>
+                        {% elif facebook_login %}
+                        <div class="dropdown">
+                            <button class="nav-item nav-link dropbtn">{{ user.picture }}
+                                <div class="col-md-6 text-center">
+                                    <img data-toggle="tooltip" data-placement="bottom" title="profile" src="{{facebook_login.extra_data.picture.data.url}}" alt="{{ user.name }}" width="40" height="40" style="border-radius: 50%">
+                                </div>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="{% url "profile" %}">Profile</a>
+                                <a href="{% url "profile" %}">Settings</a>
+                                <a href="{% url "logout" %}">Logout</a>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="dropdown">
+                                <button class="dropbtn">{{ request.user.username.title }}</button>
+                                <div class="dropdown-content">
+                                    <a href="{% url "profile" %}">Profile</a>
+                                    <a href="{% url "profile" %}">Settings</a>
+                                    <a href="{% url "logout" %}">Logout</a>
+                                </div>
+                        </div>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+    <hr style="margin-top: 0; color: rgb(197, 195, 195);">
+

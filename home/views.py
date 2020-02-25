@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
 def home(request):
-    
-    return render(request,"index.html", {})
+    context = {}
+    url = "home"
+    context['url'] = url
+    return render(request,"index.html", context)

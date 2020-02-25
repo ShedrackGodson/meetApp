@@ -9,7 +9,8 @@ from django.contrib.auth.models import User, auth
 import re
 import json
 from urllib.request import urlopen
-from .models import Profile
+from .models import Profile, Interest
+from django.shortcuts import get_list_or_404,get_object_or_404
 
 
 def locationTracer():
@@ -22,6 +23,7 @@ def locationTracer():
     city = data['city']
     country=data['country']
     region=data['region']
+    return city+","+country
 
 
 # def register(request):
@@ -38,6 +40,8 @@ def locationTracer():
 
 def signup(request):
     context = {}
+    url = "signup"
+    context["url"] = url
     if request.method == "POST":
         username = request.POST["username"]
         password1 = request.POST["password"]
@@ -50,8 +54,8 @@ def signup(request):
             else:
                 user = User.objects.create_user(username=username,password=password1)
                 user.save()
-                auth.authenticate(username=username,password=password1)
-                return redirect("/")
+                # Automatic login
+                return redirect("login")
         else:
             messages.error(request, "Passwords must match.")
             return redirect("signup")
@@ -60,6 +64,9 @@ def signup(request):
 
 
 def login(request):
+    context = {}
+    url = "login"
+    context["url"] = url
     if request.method=="POST":
         username = request.POST["username"]
         password = request.POST["password"]
@@ -73,7 +80,7 @@ def login(request):
             messages.info(request, "Username and/or password are invalid.")
             return redirect("login")
     else:
-        return render(request,'login.html',{})
+        return render(request,'login.html',context)
 
 
 def logout(request):
@@ -130,3 +137,38 @@ def save_profile(backend, user, response, *args, **kwargs):
             user=user, 
             photo_url=response['user']['picture']
         )
+
+def profile(request):
+    context = {}
+    url = "profile"
+    context["url"] = url
+
+    user = request.user
+
+    try:
+        twitter_login = user.social_auth.get(provider='twitter')
+    except UserSocialAuth.DoesNotExist:
+        twitter_login = None
+
+    try:
+        facebook_login = user.social_auth.get(provider='facebook')
+    except UserSocialAuth.DoesNotExist:
+        facebook_login = None
+
+    can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
+
+    # user_interests = Profile.objects.get(user=user)
+    # user_interests.interests.all()
+    user_profile = Profile.objects.all()
+    # requested user location
+    location = locationTracer()
+    
+
+    context['twitter_login'] = twitter_login
+    context['facebook_login'] = facebook_login
+    context['can_disconnect'] = can_disconnect
+    context['user_profile'] = user_profile
+    context['location'] = location
+    
+
+    return render(request, 'users/profile.html', context)

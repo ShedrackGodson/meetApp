@@ -1,0 +1,7 @@
+   {% load static %}
+   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>    
+    <script>
+        $.get("https://ipinfo.io",function(response){
+            $("#city").html("<b>"+response.city+","+response.country+"</b>");
+        }, 'jsonp');
+    </script>
