@@ -33,7 +33,7 @@
                         <div class="dropdown">
                             <button class="nav-item nav-link dropbtn">{{ user.picture }}
                                 <div class="col-md-6 text-center">
-                                    <img data-toggle="tooltip" data-placement="bottom" title="profile" src="{{facebook_login.extra_data.picture.data.url}}" alt="{{ user.name }}" width="40" height="40" style="border-radius: 50%">
+                                    <img data-toggle="tooltip" data-placement="bottom" title="{{ user.username }}" src="{{facebook_login.extra_data.picture.data.url}}" alt="{{ user.name }}" width="40" height="40" style="border-radius: 50%">
                                 </div>
                             </button>
                             <div class="dropdown-content">
@@ -44,7 +44,9 @@
                         </div>
                         {% else %}
                         <div class="dropdown">
-                                <button class="dropbtn">{{ request.user.username.title }}</button>
+                                <button class="dropbtn">{{ request.user.username.title }}
+
+                                </button>
                                 <div class="dropdown-content">
                                     <a href="{% url "profile" %}">Profile</a>
                                     <a href="{% url "profile" %}">Settings</a>

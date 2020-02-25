@@ -147,6 +147,7 @@ VENV_PATH = os.path.dirname(BASE_DIR)
 STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
 MEDIA_ROOT = os.path.join(VENV_PATH, 'media_root')
 
+
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home' # Redirection link when user logged in
 LOGOUT_URL = 'logout'
