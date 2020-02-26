@@ -34,6 +34,9 @@
                             <button class="nav-item nav-link dropbtn">{{ user.picture }}
                                 <div class="col-md-6 text-center">
                                     <img data-toggle="tooltip" data-placement="bottom" title="{{ user.username }}" src="{{facebook_login.extra_data.picture.data.url}}" alt="{{ user.name }}" width="40" height="40" style="border-radius: 50%">
+                                    <div style="float: left;width: 15px;height: 15px;margin-left: -20px;margin-top: -20px;">
+                                        <i class="material-icons">expand_more</i>
+                                    </div>
                                 </div>
                             </button>
                             <div class="dropdown-content">
@@ -45,7 +48,6 @@
                         {% else %}
                         <div class="dropdown">
                                 <button class="dropbtn">{{ request.user.username.title }}
-
                                 </button>
                                 <div class="dropdown-content">
                                     <a href="{% url "profile" %}">Profile</a>
