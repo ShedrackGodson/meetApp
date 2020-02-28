@@ -11,14 +11,15 @@ class Interest(models.Model):
     
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,verbose_name='profile')
     email = models.EmailField(null=True,help_text="A valid email address")
     location = models.CharField(max_length=255)
     hometown = models.CharField(max_length=255)
     bio = models.TextField(max_length=500, blank=True)
     interests = models.ManyToManyField(Interest, related_name="interests")
-    avatar = models.ImageField(verbose_name="Profile Image")
+    avatar = models.ImageField(upload_to="users/media/images")
     birthdate = models.DateField(null=True, blank=True)
+    datejoined = models.DateTimeField(auto_now_add=True)
 
     # def __str__(self):
     #     return self.email

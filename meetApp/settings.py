@@ -1,5 +1,6 @@
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -45,9 +46,9 @@ MIDDLEWARE = [
 AUTHENTICATION_BACKENDS = (
     # 'social_core.backends.github.GithubOAuth2',
     'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
-    # 'social_core.backends.facebook.FacebookOAuth2',
 )
 
 SOCIAL_AUTH_PIPELINE = (
@@ -139,13 +140,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
 MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = [os.path.join(
     BASE_DIR, 'static'), os.path.join(BASE_DIR, 'media')]
-VENV_PATH = os.path.dirname(BASE_DIR)
-STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
-MEDIA_ROOT = os.path.join(VENV_PATH, 'media_root')
 
 
 LOGIN_URL = 'login'
@@ -171,7 +172,11 @@ SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [
 # Twitter Auth
 SOCIAL_AUTH_TWITTER_KEY = '1eb9CmB5u6W5QweJIwa3lpiIK'
 SOCIAL_AUTH_TWITTER_SECRET = 'IEj7hNw435j6PeZ9yYeIfRcffsV5YEYjTCZc1oTHOSC0zlKXZb'
+TWITTER_EXTRA_DATA = [('profile_image_url','profile_picture')]
 
+# Google Auth
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '842550580760-4v9eimd2hekkmf5kmdusbc79jl27340o.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'XW_oq6BIADnECw5ti8PZYb7C'
 
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/settings/'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/settings/'

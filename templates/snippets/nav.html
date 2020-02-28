@@ -22,7 +22,14 @@
                     {% else %}
                         {% if twitter_login %}
                         <div class="dropdown">
-                            <button class="nav-item nav-link dropbtn"><i class="glyphicon glyphicon-chevron-down">{{ twitter_login.extra_data.access_token.screen_name.title }}</i></button>
+                            <button class="nav-item nav-link dropbtn">
+                                <div class="col-md-6 text-center">
+                                    <img data-toggle="tooltip" data-placement="bottom" title="{{ user.username }}" src="{% static 'images/group.png' %}" alt="{{ user.name }}" width="40" height="40" style="border-radius: 50%">
+                                    <div style="float: left;width: 15px;height: 15px;margin-left: -20px;margin-top: -20px;">
+                                        <i class="material-icons">expand_more</i>
+                                    </div>
+                                </div>
+                            </button>
                             <div class="dropdown-content">
                                 <a href="{% url "profile" %}">Profile</a>
                                 <a href="{% url "profile" %}">Settings</a>
@@ -31,7 +38,7 @@
                         </div>
                         {% elif facebook_login %}
                         <div class="dropdown">
-                            <button class="nav-item nav-link dropbtn">{{ user.picture }}
+                            <button class="nav-item nav-link dropbtn">
                                 <div class="col-md-6 text-center">
                                     <img data-toggle="tooltip" data-placement="bottom" title="{{ user.username }}" src="{{facebook_login.extra_data.picture.data.url}}" alt="{{ user.name }}" width="40" height="40" style="border-radius: 50%">
                                     <div style="float: left;width: 15px;height: 15px;margin-left: -20px;margin-top: -20px;">
@@ -47,13 +54,23 @@
                         </div>
                         {% else %}
                         <div class="dropdown">
-                                <button class="dropbtn">{{ request.user.username.title }}
-                                </button>
-                                <div class="dropdown-content">
-                                    <a href="{% url "profile" %}">Profile</a>
-                                    <a href="{% url "profile" %}">Settings</a>
-                                    <a href="{% url "logout" %}">Logout</a>
+                            <button class="nav-item nav-link dropbtn">{{ user.picture }}
+                                <div class="col-md-6 text-center">
+                                {% if user.profile.avatar %}
+                                <img data-toggle="tooltip" data-placement="bottom" title="{{ user.username }}" src="{{user.profile.avatar.url}}" alt="{{ user.name }}" width="40" height="40" style="border-radius: 50%">                                
+                                {% else %}
+                                    <img data-toggle="tooltip" data-placement="bottom" title="{{ user.username }}" src="{% static 'images/group.png' %}" alt="{{ user.name }}" width="40" height="40" style="border-radius: 50%">
+                                {% endif %}                                
+                                    <div style="float: left;width: 15px;height: 15px;margin-left: -20px;margin-top: -20px;">
+                                        <i class="material-icons">expand_more</i>
+                                    </div>
                                 </div>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="{% url "profile" %}">Profile</a>
+                                <a href="{% url "profile" %}">Settings</a>
+                                <a href="{% url "logout" %}">Logout</a>
+                            </div>
                         </div>
                         {% endif %}
                     {% endif %}

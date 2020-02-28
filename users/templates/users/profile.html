@@ -6,44 +6,46 @@
         <div style="width: 230px; height: 200px;float: right; margin-right: 40px; margin-top: -50px; border: 1px rgb(211, 206, 206) solid;">
             {% if facebook_login %}
             <a href="#"><img data-toggle="tooltip" data-placement="bottom" title="Change your picture" src="{{facebook_login.extra_data.picture.data.url}}" alt="{{ user.name }}" height="100%" width="100%"></a>
+            {% elif twitter_login %}
+            <a href="#"><img data-toggle="tooltip" data-placement="bottom" title="Change your picture" src="{% static 'images/group.png' %}" alt="{{ user.name }}" height="100%" width="100%"></a>
+            {% else %}
+            {% if user.profile.avatar %}
+            <a href="#"><img data-toggle="tooltip" data-placement="bottom" title="Change your picture" src="{{user.profile.avatar.url}}" alt="" height="100%" width="100%"></a>
+            {% else %}
+            <a href="#"><img data-toggle="tooltip" data-placement="bottom" title="Change your picture" src="{% static 'images/group.png' %}" alt="" height="100%" width="100%"></a>
+            {% endif %}
             {% endif %}
         <div style="width: 230px; height: 200px;float: right; margin-right: 0px; margin-top: 0px;">
             <span><a href="#" style="font-size: small; justify-content: center; margin-left: 20%;color: blue;">Change your picture</a></span>
             <hr style="margin-top: 5px;background-color: rgb(211, 208, 208);">
             <span style="margin-top: 20px;"><h5><span style="font-weight: bold;">Interests</span> <span>.<a href="#" style="color: blue; font-size: small; margin-left: 4px;">Edit</a></span></h5></span>
             <hr style="margin-top: 2px;background-color: rgb(211, 208, 208);">
-            {% if user_profile and request.user%}
-            {% for profile in user_profile %}
-            {% for interest in profile.interests.all %}
+            {% for interest in user.profile.interests.all %}
                 <span><a href="#" style="font-size: small; color: blue; margin-right: 2px;">{{ interest }}</a>.</span>
             {% endfor %}
-            {% endfor %}
-            {% else %}
-                <span>Add Interests</span>
-            {% endif %} <br>
-            
+            <br>            
         </div>
         </div>
         <div style="width: 70%; height: 87%;">
             <div style="float: left;width: 33%; margin: 1px; height: 20%;">
                 <p style="margin: 5px;"><span style="font-weight: bold;">Location:</span> <br>
-                <a href="#" style="color: blue; text-decoration: underline; font-size: 15.5px;"><span>{{ location }}</span></a>
+                <a href="#" style="color: blue; text-decoration: underline; font-size: 15.5px;"><span>{{ user.profile.location }}</span></a>
                 </p>
                 <form method="POST">
                 {% csrf_token %}
-                <p style="margin-left: 5px;"><span style="font-weight: bold;">Hometown:</span> <span style="margin-left: 3px;text-decoration: underline;"><a href="#" style="color: blue;">Edit</a></span></p>
+                <p style="margin-left: 5px;"><span style="font-weight: bold;">Hometown: <span class="ml-2">{{ user.profile.hometown }}</span><br class="mb-3"></span> <span style="margin-left: 3px;text-decoration: underline;"><a href="#" style="color: blue;">Edit</a></span></p>
                 </form>
             </div>
             <div style="float: left;width: 33%; margin: 1px;height: 20%;">
                 <p style="margin: 5px;"><span style="font-weight: bold;">Date Joined MeetApp:</span> <br>
-                <span>December 25,2020</span> </p>
+                <span>{{ user.profile.datejoined|date }}</span> </p>
             </div>
             <div style="float: left;width: 33%; margin: 1px;height: 20%;">
                 <p>Add Later</p>
             </div>
             <div style="float: left; width: 100%; height: 25%; margin-top: 10px;">
                 <p style="margin: 5px;"><span style="font-weight: bold;">Bio:</span> <br> 
-                    <span>I am happy to participate in technology events and to learn new things from other participants. #CodeIgniter</span>
+                    <span>{{ user.profile.bio }}</span>
                     <form method="POST">
                         <span style="margin: 5px;"><a href="#" style="color: blue;text-decoration: underline;">Edit</a></span>
                     {% csrf_token %}
@@ -83,5 +85,5 @@
             </div>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 {% endblock content %}
