@@ -174,7 +174,7 @@ SOCIAL_AUTH_TWITTER_KEY = '1eb9CmB5u6W5QweJIwa3lpiIK'
 SOCIAL_AUTH_TWITTER_SECRET = 'IEj7hNw435j6PeZ9yYeIfRcffsV5YEYjTCZc1oTHOSC0zlKXZb'
 TWITTER_EXTRA_DATA = [('profile_image_url','profile_picture')]
 
-# Google Auth
+# Google+ Auth
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '842550580760-4v9eimd2hekkmf5kmdusbc79jl27340o.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'XW_oq6BIADnECw5ti8PZYb7C'
 

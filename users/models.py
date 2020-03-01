@@ -23,8 +23,8 @@ class Profile(models.Model):
 
     # def __str__(self):
     #     return self.email
-    def __repr__(self):
-      return super().__repr__() + "Email: " + str(self._email) 
+    def __str__(self):
+      return f"{self.user.username} Profile" 
     
 
 

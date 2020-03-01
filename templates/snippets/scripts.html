@@ -4,4 +4,10 @@
         $.get("https://ipinfo.io",function(response){
             $("#city").html("<b>"+response.city+","+response.country+"</b>");
         }, 'jsonp');
+
+        $(document).ready(function() {
+            $("#hide").click(function(){
+            $(".panel").hide();
+            });
+        });
     </script>

@@ -38,6 +38,72 @@
 html{ 
   font-family: Poppins-Regular;
 }
+.account-interests-list{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.clearfix::after{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+#account-unsubscribed-interests .account-interests-items{
+    background: #fff;
+    width: 228px!important;
+    cursor: pointer;
+    border: 1px solid black;
+}
+.account-interests-items{
+    float: left;
+    position: relative;
+    /* background: #f2f2f2; */
+    padding: 4px 8px;
+    margin: 0 6px 6px 0;
+    /* width: 236px; */
+    overflow: hidden;
+}
+
+.account-interests-list{
+  list-style: none;
+}
+.account-interests-items .add_icon {
+  margin-right: 4px;
+}
+.add_icon{
+  background-position: 0 0;
+}
+.spritebg {
+    display: block;
+    width: 18px;
+    height: 18px;
+    float: left;
+}
+.sprite {
+  background-image: url(https://secure.meetupstatic.com/img/1/sprites/sprite.png);
+  background-repeat: no-repeat;
+}
+
+#account-unsubscribed-interests .account-interest-name {
+  width: 180px;
+}
+.account-interest-name {
+  font-size: 13px;
+  /* width: 208px; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  text-align: -webkit-match-parent;
+  list-style: none;
+}
+li{
+  margin: 5px auto;
+}
 </style>
 <body style="height: 100%;">
 {% include "snippets/nav.html" %}

@@ -12,6 +12,7 @@ from urllib.request import urlopen
 from .models import Profile, Interest
 from django.shortcuts import get_list_or_404,get_object_or_404
 from django.forms.models import model_to_dict
+from .form import UserUpdateForm,ProfileUpdateForm
 
 
 def locationTracer():
@@ -35,7 +36,7 @@ def signup(request):
 
         if password1==password2:
             if User.objects.filter(username=username).exists():
-                messages.info(request, "Username already exists.")
+                user_exists = messages.info(request, "Username already exists.")
                 return redirect("signup")
             else:
                 user = User.objects.create_user(username=username,password=password1)
@@ -45,6 +46,7 @@ def signup(request):
         else:
             messages.error(request, "Passwords must match.")
             return redirect("signup")
+        context["user_exists"] = user_exists
     else:
         return render(request, "signup.html",context)
 
@@ -72,49 +74,6 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect("/")
-
-
-# @login_required
-# def setting(request):
-#     user = request.user
-
-#     try:
-#         twitter_login = user.social_auth.get(provider='twitter')
-#     except UserSocialAuth.DoesNotExist:
-#         twitter_login = None
-
-#     try:
-#         facebook_login = user.social_auth.get(provider='facebook')
-#     except UserSocialAuth.DoesNotExist:
-#         facebook_login = None
-
-#     can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
-
-#     return render(request, 'index.html', {
-#         'twitter_login': twitter_login,
-#         'facebook_login': facebook_login,
-#         'can_disconnect': can_disconnect
-#     })
-
-# @login_required
-# def password(request):
-#     if request.user.has_usable_password():
-#         PasswordForm = PasswordChangeForm
-#     else:
-#         PasswordForm = AdminPasswordChangeForm
-
-#     if request.method == 'POST':
-#         form = PasswordForm(request.user, request.POST)
-#         if form.is_valid():
-#             form.save()
-#             update_session_auth_hash(request, form.user)
-#             messages.success(request, 'Your password was successfully updated!')
-#             return redirect('password')
-#         else:
-#             messages.error(request, 'Please correct the error below.')
-#     else:
-#         form = PasswordForm(request.user)
-#     return render(request, 'users/password.html', {'form': form})
 
 
 def save_profile(backend, user, response, *args, **kwargs):
@@ -167,3 +126,18 @@ def profile(request):
     
 
     return render(request, 'users/profile.html', context)
+
+@login_required
+def profile_edit(request):
+    context = {}
+
+    u_form = UserUpdateForm()
+    p_form = ProfileUpdateForm()
+
+    context["u_form"] = u_form
+    context["p_form"] = p_form
+
+    all_interests = Interest.objects.all()
+    context["all_interests"] = all_interests
+
+    return render(request,"users/updateprofil.html",context)

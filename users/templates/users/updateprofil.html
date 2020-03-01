@@ -1,0 +1,158 @@
+{% extends "base.html" %} {% load static %}
+{% block content %}
+    <div style="height: 80%;  border: 1px rgb(211, 206, 206) solid; width: 60%;margin-left: 20%;">
+        <h3 style="font-weight: bolder;margin-left: 15px; margin-top: 10px;">General</h3>
+        <hr style="margin-top: 0; background-color: rgb(211, 208, 208);  margin-left: 0;">
+        <div style="width: 230px; height: 165px;float: right; margin-right: 25px; margin-top: 0px; border: 1px rgb(211, 206, 206) solid;">
+            {% if facebook_login %}
+            <a href="#"><img data-toggle="tooltip" data-placement="bottom" title="Change your picture" src="{{facebook_login.extra_data.picture.data.url}}" alt="{{ user.name }}" height="100%" width="100%"></a>
+            {% elif twitter_login %}
+            <a href="#"><img data-toggle="tooltip" data-placement="bottom" title="Change your picture" src="{% static 'images/group.png' %}" alt="{{ user.name }}" height="100%" width="100%"></a>
+            {% else %}
+            {% if user.profile.avatar %}
+            <a href="#"><img data-toggle="tooltip" data-placement="bottom" title="Change your picture" src="{{user.profile.avatar.url}}" alt="" height="100%" width="100%"></a> <br>
+            <span><a href="#" style="color: blue;">Change your profile</a></span>
+            {% else %}
+            <a href="#"><img data-toggle="tooltip" data-placement="bottom" title="Change your picture" src="{% static 'images/group.png' %}" alt="" height="100%" width="100%"></a>
+            {% endif %}
+            {% endif %}
+        </div>
+
+        <div style="width: 65%;height: 86.7%;margin-left: 15px;">
+            <div style="height: 50px;border-bottom:1px solid rgb(206, 200, 200);">
+                <div style="float: left;width: 20%;height: 100%;">
+                    <p style="font-weight: bold;">Name: </p>
+                </div>
+                <div style="float: left;width: 80%;height: 100%;">
+                    <p style="font-size: 16px;">{{ user.username.title }}
+                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;">edit</a></span>
+                    </p>
+                </div>
+            </div>
+
+            <div style="height: 50px;border-bottom:1px solid rgb(206, 200, 200);">
+                <div style="float: left;width: 20%;height: 100%;">
+                    <p style="font-weight: bold;">Email Address: </p>
+                </div>
+                <div style="float: left;width: 80%;height: 100%;">
+                    <p>{{ user.email }}
+                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;">edit</a></span>
+                    </p>
+                </div>
+            </div>
+
+            <div style="height: 50px;border-bottom:1px solid rgb(206, 200, 200);">
+                <div style="float: left;width: 20%;height: 100%;">
+                    <p style="font-weight: bold;">Password: </p>
+                </div>
+                <div style="float: left;width: 80%;height: 100%;">
+                    <p>(Hidden)
+                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;">edit</a></span>
+                    </p>
+                </div>
+            </div>
+
+            <div style="height: 50px;border-bottom:1px solid rgb(206, 200, 200);">
+                <div style="float: left;width: 20%;height: 100%;">
+                    <p style="font-weight: bold;">Location: </p>
+                </div>
+                <div style="float: left;width: 80%;height: 100%;">
+                    <p>{{ user.profile.location }}
+                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;">edit</a></span>
+                    </p>
+                </div>
+            </div>
+            <div style="height: 50px;border-bottom:1px solid rgb(206, 200, 200);">
+                <div style="float: left;width: 20%;height: 100%;">
+                    <p style="font-weight: bold;">Hometown: </p>
+                </div>
+                <div style="float: left;width: 80%;height: 100%;">
+                    <p>{{ user.profile.hometown }}
+                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;">edit</a></span>
+                    </p>
+                </div>
+            </div>
+
+            <div style="height: 50px;border-bottom:1px solid rgb(206, 200, 200);">
+                <div style="float: left;width: 20%;height: 100%;">
+                    <p style="font-weight: bold;">Birthday: </p>
+                </div>
+                <div style="float: left;width: 80%;height: 100%;">
+                    <p>{{ user.profile.birthdate|date }}
+                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;">edit</a></span>
+                    </p>
+                </div>
+            </div>
+            <div style="height: 50px;border-bottom:1px solid rgb(206, 200, 200);">
+                <div style="float: left;width: 20%;height: 100%;">
+                    <p style="font-weight: bold;">Gender: </p>
+                </div>
+                <div style="float: left;width: 80%;height: 100%;">
+                    <p>Not Interested
+                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;">edit</a></span>
+                    </p>
+                </div>
+            </div>
+
+            <div style="height: 50px;">
+                <div style="float: left;width: 20%;height: 100%;">
+                    <p style="font-weight: bold;">Bio: </p>
+                </div>
+                <div style="float: left;width: 80%;height: 100%;">
+                    <p>{{ user.profile.bio }}
+                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;">edit</a></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div style="height: 96%;  border: 1px rgb(211, 206, 206) solid; width: 60%;margin-left: 20%;margin-top: 20px; margin-bottom: 20px;">
+        <h3 style="font-weight: bolder;margin-left: 15px; margin-top: 10px;">Your Interests</h3>
+        <hr style="margin-top: 0; background-color: rgb(211, 208, 208);  margin-left: 0;">
+        <div style="height: auto;margin-top: -10px;display: inline-block;white-space: nowrap;">
+            <p style="margin-left: 20px;">Add interests so we can recommend the best Meetings for you.</p>
+            {% for interest in user.profile.interests.all %}
+            <div class="w-auto p5" style="float: left;height: 25px;width: 40px;margin-top: -5px;margin-left: 20px;width: 30%;margin-bottom: 15px;background-color: #f2f2f2;border-radius: 2px;">
+                <small>{{ interest.name }}</small> 
+            </div>
+            {% endfor %}
+        </div>
+        <div style="height: 363px;margin-top: 30px;">
+            <h4 style="font-weight: bolder;margin-left: 15px; margin-top: 10px;">Add Interests</h4>
+            <div style="margin-left: 15px;margin-top: 20px;float: left;">
+                <p><a href="#" style="color: blue;">Categories</a>&nbsp;>&nbsp;Suggested Interests</p>
+            </div>
+            <div style="float: right;border: none;width:230px;height: 55px;margin-right: 15px;">
+                <span style="position: absolute;margin-top: 10px;padding: 2px;"><i class="material-icons">search</i></span>
+                <form method="POST">
+                {% csrf_token %}
+                <input style="width: 100%;height: 100%;border-radius: 10px;border: 1px solid rgb(211, 206, 206);height: 45px;padding-left: 30px;" type="text" name="interests" id="interest" placeholder="Search for an interest">
+                </form>
+            </div>
+            <div class="col-12 container" style="height: 80%;margin-top: 10%;">
+                <ul class="list-unstyled row ml-5">
+                    {% for interest in all_interests %}
+                    {% if interest not in user.profile.interests.all %}
+                        <li class="list-item col-4">
+                            <span><i class="material-icons" style="font-size: 15px;">add_circle</i></span>
+                            <span style="cursor: pointer;">{{ interest }}</span>
+                        </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                <div>
+                    <label for="distance">We'll notify you about other Meetings within selected distance that match your interests.</label>
+                    <select style="border: 1px solid #d6d6d6;background-color: #f2f2f2;" id="distance">
+                    <option value="100miles">100miles</option>
+                    <option value="50miles">50miles</option>
+                    <option value="25miles">25miles</option>
+                    <option value="10miles">10miles</option>
+                    <option value="5miles">5miles</option>
+                    </select>
+                </div>
+            </div>
+        </div>            
+        </div>
+
+{% endblock content %}
