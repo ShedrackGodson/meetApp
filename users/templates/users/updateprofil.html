@@ -25,7 +25,7 @@
                 </div>
                 <div style="float: left;width: 80%;height: 100%;">
                     <p style="font-size: 16px;">{{ user.username.title }}
-                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;">edit</a></span>
+                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;" data-toggle="modal" data-target="#exampleModalCenter">edit</a></span>
                     </p>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 </div>
                 <div style="float: left;width: 80%;height: 100%;">
                     <p>{{ user.email }}
-                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;">edit</a></span>
+                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;" data-toggle="modal" data-target="#email_exampleModalCenter">edit</a></span>
                     </p>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 </div>
                 <div style="float: left;width: 80%;height: 100%;">
                     <p>{{ user.profile.location }}
-                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;">edit</a></span>
+                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;" data-toggle="modal" data-target="#location_exampleModalCenter">edit</a></span>
                     </p>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                 </div>
                 <div style="float: left;width: 80%;height: 100%;">
                     <p>{{ user.profile.hometown }}
-                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;">edit</a></span>
+                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;" data-toggle="modal" data-target="#location_exampleModalCenter">edit</a></span>
                     </p>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                 </div>
                 <div style="float: left;width: 80%;height: 100%;">
                     <p>{{ user.profile.birthdate|date }}
-                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;">edit</a></span>
+                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;" data-toggle="modal" data-target="#birthday_exampleModalCenter">edit</a></span>
                     </p>
                 </div>
             </div>
@@ -88,8 +88,8 @@
                     <p style="font-weight: bold;">Gender: </p>
                 </div>
                 <div style="float: left;width: 80%;height: 100%;">
-                    <p>Not Interested
-                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;">edit</a></span>
+                    <p>{{ user.profile.gender.title }}
+                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;" data-toggle="modal" data-target="#gender_exampleModalCenter">edit</a></span>
                     </p>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                 </div>
                 <div style="float: left;width: 80%;height: 100%;">
                     <p>{{ user.profile.bio }}
-                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;">edit</a></span>
+                        <span style="margin-left: 5px;"><a href="#" style="color: blue;text-decoration: underline;" data-toggle="modal" data-target="#bio_exampleModalCenter">edit</a></span>
                     </p>
                 </div>
             </div>
@@ -153,6 +153,150 @@
                 </div>
             </div>
         </div>            
+        </div>
+
+        <!-- Username Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">Change your Name</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                    {{ u_form.as_p }}
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: red;">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <!-- Email Modal -->
+        <div class="modal fade" id="email_exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">Change Email Address</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                    {{ e_form.as_p }}
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: red;">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <!-- Location And Hometown Modal -->
+        <div class="modal fade" id="location_exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">Change your Location</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                    {{ l_form.as_p }}
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: red;">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <!-- Birthday Modal -->
+        <div class="modal fade" id="birthday_exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">Change your Birthday</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                    {{ b_form.as_p }}
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: red;">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <!-- Gender Modal -->
+        <div class="modal fade" id="gender_exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">Change your Gender</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                    {{ g_form.as_p }}
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: red;">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <!-- Bio Modal -->
+        <div class="modal fade" id="bio_exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">Change your Gender</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                    {{ bio_form.as_p }}
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: red;">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                </form>
+            </div>
+            </div>
         </div>
 
 {% endblock content %}

@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'users',
     'widget_tweaks',
     'social_django',
+    'tempus_dominus',
 ]
 
 MIDDLEWARE = [
@@ -181,3 +182,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'XW_oq6BIADnECw5ti8PZYb7C'
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/settings/'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/settings/'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+
+#Tempus Dominus
+TEMPUS_DOMINUS_INCLUDE_ASSETS = True
+TEMPUS_DOMINUS_LOCALIZE = False

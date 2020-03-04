@@ -11,6 +11,11 @@ class Interest(models.Model):
     
 
 class Profile(models.Model):
+    GENDER_CHOICES = (
+        ("M","Male"),
+        ("F","Female"),
+        ("N","Not Interested")
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE,verbose_name='profile')
     email = models.EmailField(null=True,help_text="A valid email address")
     location = models.CharField(max_length=255)
@@ -20,9 +25,8 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to="users/media/images")
     birthdate = models.DateField(null=True, blank=True)
     datejoined = models.DateTimeField(auto_now_add=True)
-
-    # def __str__(self):
-    #     return self.email
+    gender = models.CharField(max_length=1,choices=GENDER_CHOICES)
+    
     def __str__(self):
       return f"{self.user.username} Profile" 
     

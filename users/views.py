@@ -12,9 +12,21 @@ from urllib.request import urlopen
 from .models import Profile, Interest
 from django.shortcuts import get_list_or_404,get_object_or_404
 from django.forms.models import model_to_dict
-from .form import UserUpdateForm,ProfileUpdateForm
+from .form import (
+    UserUpdateForm,
+    ProfileUpdateForm,
+    UserUpdateEmail, 
+    UserLocationForm,
+    UserBirthdayForm,
+    UserGenderUpdateForm,
+    UserBioUpdateForm
+)
 
 
+"""
+A function to track the site visitors actual location based on their IP addresses. IP address got
+passed direct to http://ipinfo.io to check for the current Location and data is returned as json
+"""
 def locationTracer():
     url = 'http://ipinfo.io/json'
     response = urlopen(url)
@@ -75,7 +87,9 @@ def logout(request):
     auth.logout(request)
     return redirect("/")
 
-
+"""
+Saving the users profiles who are logging in and signing up with Facebook and/or Twitter
+"""
 def save_profile(backend, user, response, *args, **kwargs):
     if backend.name == "facebook":
         Profile.objects.create(
@@ -111,8 +125,6 @@ def profile(request):
     # user_interests = Profile.objects.get(user=user)
     # user_interests.interests.all()
     user_profile = Profile.objects.all()
-    # requested user location
-    # location = locationTracer()
 
     prfl = model_to_dict(request.user.profile)
     
@@ -121,23 +133,76 @@ def profile(request):
     context['facebook_login'] = facebook_login
     context['can_disconnect'] = can_disconnect
     context['user_profile'] = user_profile
-    # context['location'] = location
     context['user'] = request.user
     
 
     return render(request, 'users/profile.html', context)
 
+"""
+Editing User & Profile fields separately. This may be dumb but for the meantime I am looking for the 
+scenario that makes more sense. It works though but I dont think this is the better way of handling
+multiple fields separately.
+"""
 @login_required
 def profile_edit(request):
     context = {}
+    if request.method == "POST":
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        e_form = UserUpdateEmail(request.POST, instance=request.user)
+        l_form = UserLocationForm(request.POST, instance=request.user.profile)
+        b_form = UserBirthdayForm(request.POST, instance=request.user.profile)
+        g_form = UserGenderUpdateForm(request.POST, instance=request.user.profile)
+        bio_form = UserBioUpdateForm(request.POST, instance=request.user.profile)
 
-    u_form = UserUpdateForm()
-    p_form = ProfileUpdateForm()
+        if u_form.is_valid():
+            u_form.save()
+            print("Profile updated")
+            return redirect("setting")
+        
+        if e_form.is_valid():
+            e_form.save()
+            print("Email updated.")
+            return redirect("setting")
+        
+        if l_form.is_valid():
+            l_form.save()
+            print("Location and/or Hometown Updated.")
+            return redirect("setting")
+
+        if b_form.is_valid():
+            b_form.save()
+            print("Birthday Updated.")
+            return redirect("setting")
+
+        if g_form.is_valid():
+            g_form.save()
+            print("Gender Updated.")
+            return redirect("setting")
+        
+        if bio_form.is_valid():
+            bio_form.save()
+            print("Bio updated.")
+            return redirect("setting")
+
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+        e_form = UserUpdateEmail(instance=request.user)
+        l_form = UserLocationForm(instance=request.user.profile)
+        b_form = UserBirthdayForm(instance=request.user.profile)
+        g_form = UserGenderUpdateForm(instance=request.user.profile)
+        bio_form = UserBioUpdateForm(instance=request.user.profile)
 
     context["u_form"] = u_form
     context["p_form"] = p_form
+    context["e_form"] = e_form
+    context["l_form"] = l_form
+    context["b_form"] = b_form
+    context["g_form"] = g_form
+    context["bio_form"] = bio_form
 
-    all_interests = Interest.objects.all()
+    all_interests = Interest.objects.all()[0:25]
     context["all_interests"] = all_interests
 
     return render(request,"users/updateprofil.html",context)

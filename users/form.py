@@ -3,30 +3,64 @@ from .models import Profile
 from django.contrib.auth.models import User
 
 
-
 class UserUpdateForm(forms.ModelForm):
+    # email = forms.EmailField(widget=forms.EmailInput(attrs={"class":"input"}))
+    class Meta:
+        model = User
+        fields = ["username"]
+        exclude = ["email"]
+
+class UserUpdateEmail(forms.ModelForm):
     email = forms.EmailField(widget=forms.EmailInput(attrs={"class":"input"}))
     class Meta:
         model = User
-        fields = ["username","email"]
+        fields = [
+            "email"
+        ]
 
+class UserLocationForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = [
+            "location",
+            "hometown"
+        ]
+        widgets = {
+            "hometown": forms.TextInput(attrs={"class":"input"}),
+            "location": forms.TextInput(attrs={"class": "input"}),
+        }
 
-class ProfileUpdateForm(forms.ModelForm):
-    # location = forms.TextInput(widget=forms.TextInput(attrs={"class":"input"}))
-    # hometown = forms.CharField(widget=forms.CharField(attrs={"class":"input"}))
-    # bio = forms.TextInput(widget=forms.TextInput(attrs={"class":"input"}))
-    # birthdate = forms.DateTimeField(widget=forms.DateTimeInput(attrs={"class":"input"}))
-    # avatar = forms.ImageField(widget=forms.ImageField(attrs={"class":"input"}))
-    # interests = forms.CharField(widget=forms.CharField(attrs={"class":"input"}))
+class UserBirthdayForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ["location","hometown","birthdate","bio","interests"]
+        fields = [
+            "birthdate"
+        ]
+
+class UserGenderUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = [
+            "gender"
+        ]
+
+class UserBioUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = [
+            "bio"
+        ]
+        
+class ProfileUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        fields = ["user","location","hometown","birthdate","interests","gender"]
         widgets = {
-            "location": forms.TextInput(attrs={"class": "inpu"}),
+            "location": forms.TextInput(attrs={"class": "input"}),
             "hometown": forms.TextInput(attrs={"class":"input"}),
-            "bio": forms.Textarea(attrs={"class":"input"}),
+            # "bio": forms.Textarea(attrs={"class":"input"}),
             "birthdate": forms.DateInput(attrs={"class":"input"}),
             "interests": forms.MultipleHiddenInput(attrs={"class":"input"}),
-            # "avatar": forms.(attrs={"class":"input"}),
         }
