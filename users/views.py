@@ -14,7 +14,8 @@ from django.shortcuts import get_list_or_404,get_object_or_404
 from django.forms.models import model_to_dict
 from .form import (
     UserUpdateForm,
-    ProfileUpdateForm,
+    # ProfileUpdateForm,
+    ProfilePhotoUpdateForm,
     UserUpdateEmail, 
     UserLocationForm,
     UserBirthdayForm,
@@ -133,8 +134,7 @@ def profile(request):
     context['facebook_login'] = facebook_login
     context['can_disconnect'] = can_disconnect
     context['user_profile'] = user_profile
-    context['user'] = request.user
-    
+    context['user'] = request.user    
 
     return render(request, 'users/profile.html', context)
 
@@ -148,16 +148,21 @@ def profile_edit(request):
     context = {}
     if request.method == "POST":
         u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        p_form = ProfilePhotoUpdateForm(request.POST, request.FILES, instance=request.user.profile)
         e_form = UserUpdateEmail(request.POST, instance=request.user)
         l_form = UserLocationForm(request.POST, instance=request.user.profile)
-        b_form = UserBirthdayForm(request.POST, instance=request.user.profile)
         g_form = UserGenderUpdateForm(request.POST, instance=request.user.profile)
         bio_form = UserBioUpdateForm(request.POST, instance=request.user.profile)
+        b_form = UserBirthdayForm(request.POST, instance=request.user.profile)
 
         if u_form.is_valid():
             u_form.save()
             print("Profile updated")
+            return redirect("setting")
+        
+        if p_form.is_valid():
+            p_form.save()
+            print("Profile Picture Updated")
             return redirect("setting")
         
         if e_form.is_valid():
@@ -187,7 +192,7 @@ def profile_edit(request):
 
     else:
         u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileUpdateForm(instance=request.user.profile)
+        p_form = ProfilePhotoUpdateForm(instance=request.user.profile)
         e_form = UserUpdateEmail(instance=request.user)
         l_form = UserLocationForm(instance=request.user.profile)
         b_form = UserBirthdayForm(instance=request.user.profile)

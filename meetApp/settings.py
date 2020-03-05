@@ -14,7 +14,7 @@ SECRET_KEY = 'cjnwtz!5c=ujck1(pz2-mn36s+ja-u(3!u_5yrp1+m=c9gpdqc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['4e746eee.ngrok.io']
 
 
 # Application definition
@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'social_django',
     'tempus_dominus',
+    'group'
 ]
 
 MIDDLEWARE = [

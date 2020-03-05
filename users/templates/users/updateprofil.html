@@ -11,7 +11,7 @@
             {% else %}
             {% if user.profile.avatar %}
             <a href="#"><img data-toggle="tooltip" data-placement="bottom" title="Change your picture" src="{{user.profile.avatar.url}}" alt="" height="100%" width="100%"></a> <br>
-            <span><a href="#" style="color: blue;">Change your profile</a></span>
+            <span><a href="#" style="color: blue;" data-toggle="modal" data-target="#avatar_exampleModalCenter">Change your profile</a></span>
             {% else %}
             <a href="#"><img data-toggle="tooltip" data-placement="bottom" title="Change your picture" src="{% static 'images/group.png' %}" alt="" height="100%" width="100%"></a>
             {% endif %}
@@ -280,7 +280,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLongTitle">Change your Gender</h3>
+                <h3 class="modal-title" id="exampleModalLongTitle">Change your Bio</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -289,6 +289,30 @@
                 {% csrf_token %}
                 <div class="modal-body">
                     {{ bio_form.as_p }}
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: red;">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+                </form>
+            </div>
+            </div>
+        </div>
+
+        <!-- Avatar Modal -->
+        <div class="modal fade" id="avatar_exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">Change your Profile Picture</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                    {{ p_form.as_p }}
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: red;">Close</button>

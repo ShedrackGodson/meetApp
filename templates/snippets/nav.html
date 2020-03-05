@@ -16,9 +16,28 @@
                     <!-- <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a> -->
                 </div>
                 <div class="navbar-nav ml-auto">
+                    {% if request.user.is_authenticated %}  
+                    <div>
+                        <div style="margin-top: 15px;">
+                            <a href="{% url 'group' %}" class="nav-item nav-link" style="color: brown;">Start a new group</a>                           
+                        </div>
+                    </div>
+                    <div style="margin: 5px;height: 30px;margin-top: 20px;border: 1px solid rgb(214, 214, 214);">
+
+                    </div>
+                    <div style="width: 250px;">
+                        <div style="float: left;margin-top: 15px;">
+                            <a href="#" class="nav-item nav-link">Messages</a>                           
+                        </div>
+                        <div style="float: left;margin-top: 15px;margin-left: 15px;">
+                            <a href="#" class="nav-item nav-link">Notifications</a>
+                        </div>
+                    </div>
+                    {% endif %}
                     {% if not request.user.is_authenticated %}
                         <a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
                         <a href="{% url 'signup' %}" class="nav-item nav-link">Sign Up</a>
+
                     {% else %}
                         {% if twitter_login %}
                         <div class="dropdown">
@@ -30,6 +49,8 @@
                                     </div>
                                 </div>
                             </button>
+                            <a href="#" class="nav-item nav-link">Notifications</a>
+
                             <div class="dropdown-content">
                                 <a href="{% url "profile" %}">Profile</a>
                                 <a href="{% url "setting" %}">Settings</a>
