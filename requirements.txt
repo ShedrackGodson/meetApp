@@ -3,6 +3,10 @@ certifi==2019.11.28
 chardet==3.0.4
 defusedxml==0.6.0
 Django==3.0.3
+django-autoslug-iplweb==1.9.4.dev0
+django-cities==0.6
+django-model-utils==4.0.0
+django-tempus-dominus==5.1.2.13
 django-widget-tweaks==1.4.5
 geographiclib==1.50
 geopy==1.21.0
@@ -10,8 +14,10 @@ idna==2.9
 mysqlclient==1.4.6
 oauthlib==3.1.0
 Pillow==7.0.0
+progressbar2==3.50.0
 PyJWT==1.7.1
 python-social-auth==0.3.6
+python-utils==2.4.0
 python3-openid==3.1.0
 pytz==2019.3
 requests==2.23.0
@@ -20,4 +26,7 @@ six==1.14.0
 social-auth-app-django==3.1.0
 social-auth-core==3.2.0
 sqlparse==0.3.0
+swapper==1.1.2.post1
+tqdm==4.43.0
+Unidecode==1.1.1
 urllib3==1.25.8

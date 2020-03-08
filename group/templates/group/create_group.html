@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,7 +119,7 @@ line-height: 30px;
                 around your area </span>
             </p>
         </div>
-        <h2 style="margin-left: 50px;">Dar es Salaam,TZ <small style="font-size: 14px;margin-left: 7px;"><a href="#" style="text-decoration: none;">change location</a></small></h2>
+        <h2 style="margin-left: 50px;"><span><img src="{% static '/images/baseline_my_location_black_18dp.png' %}" alt=""></span> Dar es Salaam,TZ <small style="font-size: 14px;margin-left: 7px;"><a href="#" style="text-decoration: none;">change location</a></small></h2>
     </div>
   </div>
 
@@ -155,9 +156,37 @@ line-height: 30px;
   </div>
 
   <!-- Fourth Tab -->
-  <div class="tab">Login Info:
-    <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-    <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
+  <div class="tab">
+    <div style="width: auto;height: auto;">
+      <h1 style="font-weight: bolder;margin-left: -200px;">Now describe what your group will be about</h1>
+      <p style="margin-top: -5px;">People will see this when we promote your group,but you will be able to add to it later too.</p>
+      <p style="margin-top: -5px;">1. What's the purpose of the group?</p>
+      <p style="margin-top: -10px;">2. Who should join? </p>
+      <p style="margin-top: -10px;">3. What will you do at your events?</p>
+      <textarea name="group_desc" id="" cols="102" rows="10" placeholder="Please write at least 50 characters" style="border-radius: 5px;margin-left: 20px;" required></textarea>
+      <div style="background-color: rgb(255, 255, 255);">
+        <h4><span><img class="rotateImage" src="{% static '/images/round_sunny.png' %}" alt="" width="30" height="30"></span> <span style="margin-left: 5px;margin-top: -5px;">Here is an example</span></h4>
+        <p style="padding: 5px;margin-left: 20px;">
+          "This is a group for anyone interested in hiking, rock climbing, camping, kayaking, bouldering, etc. All skill levels are welcome. I started this group to meet other outdoor enthusiasts. Looking forward to exploring the outdoors with everybody."
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fifth Tab -->
+  <div class="tab">
+    <div style="width: auto;height: auto;">
+      <h1 style="font-weight: bolder;margin-left: -65px;">Almost there! Take a moment to review our guidelines</h1>
+      <p style="margin-top: -5px;">MeetApp is all about helping people live fuller, happier lives—with the help of strong communities. This means that all groups should:</p>
+      <p style="margin-top: -5px;">1. Be transparent about the group’s intentions</p>
+      <p style="margin-top: -10px;">2. Meet in real life</p>
+      <p style="margin-top: -10px;">3. Encourage real human interactions</p>
+      <p style="margin-top: -10px;">4. Provide growth opportunities for members</p>
+    </div>
+    <div style="width: auto;height: auto;margin-top: 10px;">
+      <p>You can read more about this in our <a href="#" style="color: blue;text-decoration: none;">Community guidelines</a></p> <br>
+      <p>Once you submit your group, a human at Meetup will review it based on these guidelines and make sure it gets promoted to the right people.</p>
+    </div>
   </div>
 
   <!-- Buttons -->
@@ -170,6 +199,7 @@ line-height: 30px;
 
   <!-- Circles which indicates the steps of the form: -->
   <div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
     <span class="step"></span>
     <span class="step"></span>
     <span class="step"></span>
@@ -192,7 +222,7 @@ function showTab(n) {
     document.getElementById("prevBtn").style.display = "inline";
   }
   if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Submit";
+    document.getElementById("nextBtn").innerHTML = "Agree & Submit";
   } else {
     document.getElementById("nextBtn").innerHTML = "Next";
   }
@@ -234,6 +264,7 @@ function validateForm() {
       valid = false;
     }
   }
+
   // If the valid status is true, mark the step as finished and valid:
   if (valid) {
     document.getElementsByClassName("step")[currentTab].className += " finish";

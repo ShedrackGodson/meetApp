@@ -26,6 +26,7 @@ class Profile(models.Model):
     birthdate = models.DateField(null=True, blank=True)
     datejoined = models.DateTimeField(auto_now_add=True)
     gender = models.CharField(max_length=14,choices=GENDER_CHOICES)
+    is_organizer = models.BooleanField(default=False)
     
     def __str__(self):
       return f"{self.user.username} Profile" 
