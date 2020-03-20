@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" class="full-height" style="height: 100%;font-family: Poppins-Regular;">
 {% include "snippets/head.html" %}
-
+{% block title %}
+{% endblock %}
 <style>
 html,body{
   font-family: Raleway; 
@@ -108,7 +109,45 @@ html{
 li{
   margin: 5px auto;
 }
-
+#div {
+  display: block;
+  border-bottom: 1px solid #dfdfdf;
+  height: 320px;
+}
+.g_container {
+  max-width: 70%;
+  margin-left: 15%;
+  display: block;
+  height: 100%;
+}
+.g_container div{
+  float: left;
+}
+#div1 {
+  width: 55%;
+  height: 300px;
+}
+#div2 {
+  width: 45%;
+}
+#div3 {
+  margin-top: 20px;
+  width: 70%;
+  margin-left: 20px;
+}
+#div4 {
+  margin-top: 50px;
+  margin-left: 20px;
+  width: 70%;
+}
+#g_pic {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+#qn:hover{
+  cursor: pointer;
+}
 </style>
 <body style="height: 100%;">
 {% include "snippets/nav.html" %}

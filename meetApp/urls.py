@@ -10,7 +10,7 @@ from group import urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", home, name="home"),
-    path("users/",include("users.urls")),
+    path("",include("users.urls")),
     path("",include("home.urls")),
     path("",include("group.urls")),
     path("oauth/", include("social_django.urls", namespace="social")),

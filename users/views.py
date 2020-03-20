@@ -12,6 +12,7 @@ from urllib.request import urlopen
 from .models import Profile, Interest
 from django.shortcuts import get_list_or_404,get_object_or_404
 from django.forms.models import model_to_dict
+from group.models import MeetAppGroup
 from .form import (
     UserUpdateForm,
     # ProfileUpdateForm,
@@ -109,6 +110,14 @@ def profile(request):
     url = "profile"
     context["url"] = url
 
+    groups = MeetAppGroup.objects.all()
+    
+    counter = 0
+    for group in groups:
+        if group.organizer_name==request.user:
+            counter += 1
+    context["counter"] = counter
+    
     user = request.user
 
     try:
@@ -134,6 +143,7 @@ def profile(request):
     context['facebook_login'] = facebook_login
     context['can_disconnect'] = can_disconnect
     context['user_profile'] = user_profile
+    context['groups'] = groups
     context['user'] = request.user    
 
     return render(request, 'users/profile.html', context)

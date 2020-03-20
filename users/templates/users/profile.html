@@ -32,7 +32,7 @@
         <div style="width: 70%; height: 87%;">
             <div style="float: left;width: 33%; margin: 1px; height: 20%;">
                 <p style="margin: 5px;"><span style="font-weight: bold;">Location:</span> <br>
-                <a href="https://google.com/{{ user.profile.location }}" style="color: blue; text-decoration: underline; font-size: 15.5px;"><span>{{ user.profile.location }}</span></a>
+                <a href="https://en.wikipedia.org/wiki/{{ user.profile.location }}" style="color: blue; text-decoration: underline; font-size: 15.5px;"><span>{{ user.profile.location }}</span></a>
                 <br>
                 <span style="font-size: small;">Hometown: <span>{{ user.profile.hometown.title }}</span> </span>
                 </p>
@@ -55,36 +55,25 @@
             </div>
             <div style="width: 100%;float: left;margin-top: 30px;height: 45%;">
                 <p>
-                    <h4 style="font-weight: bold;" class="ml-3">Member of 1 Meetings</h4>
+                    <h4 style="font-weight: bold;" class="ml-3">Member of {{ counter }} Meetings</h4>
                 </p> <hr style="background-color: rgb(211, 208, 208);">
+                {% for group in groups %}
+                {% if group.organizer_name == request.user %}
                 <div style="float: left; width: 50%;height: 30%;">
                     <div style="width: 20%;float: left;height: 100%;">
                         <a href="#" style="margin-left: 10px;">
-                            <img src="{% static 'images/group.png' %}" alt="" data-toggle="tooltip" data-placement="bottom" title="Your group name">
+                            <img src="{% static 'images/group.png' %}" alt="" data-toggle="tooltip" data-placement="bottom" title="{{ group.name }}">
                         </a>
                     </div>
                     <div style="width: 80%;float: left; height: 100%;">
-                        <p><a href="#" style="color: black;text-decoration: none;font-weight: bold;" data-toggle="tooltip" data-placement="right" title="Your group">Tanglewood Bible Study Meetup Group</a>
-                            <span style="margin-top: 5px;"><a href="#" style="color: black;text-decoration: none;">Members</a></span>
-                        </p>
-                    </div>
-
-                </div>
-
-                <div style="float: left;width: 50%;height: 30%;">
-                    <div style="width: 20%;float: left;height: 100%;">
-                        <a href="#" style="margin-left: 10px;">
-                            <img src="{% static 'images/group.png' %}" alt="" data-toggle="tooltip" data-placement="bottom" title="Your group name">
-                        </a>
-                    </div>
-                    <div style="width: 80%;float: left; height: 100%;">
-                        <p><a href="#" style="color: black;text-decoration: none;font-weight: bold;">Tanglewood Bible Study Meetup Group</a>
+                        <p><a href="{% url 'group_detail' %}" style="color: black;text-decoration: none;font-weight: bold;" data-toggle="tooltip" data-placement="right" title="{{ group.name }}">{{ group.name }}</a> <br>
                             <span style="margin-top: 5px;"><a href="#" style="color: black;text-decoration: none;">Members</a></span>
                         </p>
                     </div>
                 </div>
+                {% endif %}
+                {% endfor %}
             </div>
             </div>
         </div>
-    <!-- </div> -->
 {% endblock content %}

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from group.models import MeetAppGroup
 
 class Interest(models.Model):
     name = models.CharField(max_length=255,blank=True,null=True)
@@ -26,6 +27,7 @@ class Profile(models.Model):
     birthdate = models.DateField(null=True, blank=True)
     datejoined = models.DateTimeField(auto_now_add=True)
     gender = models.CharField(max_length=14,choices=GENDER_CHOICES)
+    group_organizing = models.ManyToManyField(MeetAppGroup,related_name="profile_groups")
     is_organizer = models.BooleanField(default=False)
     
     def __str__(self):
@@ -33,7 +35,7 @@ class Profile(models.Model):
     
 
 
-# Signals to create/update once User Instance is created/updated.
+# Signals to create/update User once Instance is created/updated.
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

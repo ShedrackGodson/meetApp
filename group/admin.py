@@ -3,3 +3,4 @@ from .models import Topics, MeetAppGroup
 
 admin.site.register(Topics)
 admin.site.register(MeetAppGroup)
+# admin.site.register(Organizer)

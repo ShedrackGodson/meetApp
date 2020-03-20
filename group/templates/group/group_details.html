@@ -1,0 +1,24 @@
+{% extends "base.html" %} {% load static %}
+{% block title %}
+<title>MeetApp | OIL & GAS EXHIBITION -TANZANIA 2019</title>
+{% endblock title %}
+{% block content %}
+<div id="div">
+    <div class="g_container">
+        <div id="div1">
+            <img id="g_pic" src="{% static 'images/wallpaper1.jpg' %}" alt="Group Profile">
+        </div>
+        <div id="div2">
+            <h2 style="margin-left: 20px;">OIL & GAS EXHIBITION -TANZANIA 2019</h2>
+            <div id="div3">
+                <p><span style="margin-right: 5px;"><img style="height: 20px;width: 20px;" src="{% static 'icons/location.png' %}" alt="location"></span><span></span> Location,Nchi</p>
+                <p style="margin-top: -10px;"><span style="margin-right: 5px;"><img style="height: 20px;width: 20px;" src="{% static 'icons/team.png' %}" alt="location"></span>100k Members <i style="font-size: 7px;color: rgb(56, 55, 55);" class="material-icons">fiber_manual_record</i> Public<span id="qn"><i style="font-size: 16px;color: rgb(194, 183, 183);" class="material-icons">help</i></span></p>
+                <p style="margin-top: -10px;"><span style="margin-right: 5px;"><img style="height: 20px;width: 20px;" src="{% static 'icons/employee.png' %}" alt="location"></span>Organized by <span><a style="font-weight: bold;color: black;text-decoration: none;" href="#">Name</a></span></p>
+            </div>
+            <div id="div4">
+                <p><span style="margin-top: 10px;margin-right: 10px;">Share:</span><span><span style="margin-right: 7px;"><a href="#"><img  style="height: 20px;width: 20px;" src="{% static 'icons/twitter.png' %}" alt="twitter"></a></span><span style="margin-right: 7px;"><a href="#"><img  style="height: 20px;width: 20px;" src="{% static 'icons/facebook.png' %}" alt="twitter"></a></span><span style="margin-right: 7px;"><a href="#"><img  style="height: 20px;width: 20px;" src="{% static 'icons/instagram.png' %}" alt="twitter"></a></span></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

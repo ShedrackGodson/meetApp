@@ -1,10 +1,8 @@
 from django.db import models
-from users.models import Profile
 from django.contrib.auth.models import User
-from users.views import locationTracer
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
-
-# location = locationTracer()
 
 class Topics(models.Model):
     
@@ -14,19 +12,32 @@ class Topics(models.Model):
         return self.topic_name
 
 class MeetAppGroup(models.Model):
-    CITY_CHOICES = (
-        ("Tanzania","TZ"),
-        ("Uganda","UG"),
-        ("Kenya","KN"),
-        ("Nigeria","NG"),
-        ("South Africa","RSA"),
-        ("India","IND"),
-    )
     name = models.CharField(max_length=255,null=False,blank=False)
     location = models.CharField(max_length=255)
     topics = models.ManyToManyField(Topics)
     desc = models.TextField(max_length=1000,null=False,blank=False,help_text="Enter your group descriptions here...")
+    organizer_name = models.ForeignKey(User,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
+    
+
+# class Organizer(models.Model):
+#     organizer_name = models.OneToOneField(User,on_delete=models.CASCADE,verbose_name="organizer")
+#     group_name = models.ManyToManyField(MeetAppGroup)
+
+
+#     def __str__(self):
+#         return self.organizer_name.username
+
+
+# Signals to create/update User once Instance is created/updated.
+# @receiver(post_save, sender=User)
+# def create_group(sender, instance, created, **kwargs):
+#     if created:
+#         Organizer.objects.create(organizer_name=instance)
+
+# @receiver(post_save, sender=User)
+# def save_group(sender, instance, **kwargs):
+#     instance.name.save()
     

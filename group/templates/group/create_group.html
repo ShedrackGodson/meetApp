@@ -257,6 +257,9 @@ Styling Google Maps
 </style>
 <body>
 
+  <div>
+    <p style="border: 1px solid transparent"><a href="{% url 'home' %}" style="color: blue;text-decoration: none;float: right;margin-right: 20px;margin-top: 30px;"><small>BACK HOME</small></a></p>
+  </div>
 <form id="regForm" method="POST" style="border: 1px solid rgb(214, 213, 213);">
 {% csrf_token %}
   <!-- One "tab" for each step in the form: -->
@@ -267,12 +270,6 @@ Styling Google Maps
             <p style="margin-left: 50px;">MeetApp groups meets locally and in person. We'll connect you with people who live in <br> <span> and 
                 around your area </span>
             </p>
-            {% comment %} <input type="text" placeholder="Enter your location" name="location"> {% endcomment %}
-            
-            <!-- <div style="display: block;"> -->
-              <!-- <input id="id_location" class="controls" type="text" placeholder="Search Box"> -->
-              
-            <!-- </div> -->
         </div>
         <h2 style="margin-left: 50px;"><span><img src="{% static '/images/baseline_my_location_black_18dp.png' %}" alt=""></span> Dar es Salaam,TZ <small style="font-size: 14px;margin-left: 7px;"><a href="#" style="text-decoration: none;" data-toggle="modal" data-target="#myModal">change location</a></small></h2>
         <!-- Google Map Modal -->
@@ -305,26 +302,6 @@ Styling Google Maps
     </div>
   </div>
 
-  <!-- Second Tab -->
-  {% comment %} <div class="tab" style="height: fit-content;">
-    <div style="margin-top: -40px;width: 109.5%;margin-left: -40px;">
-        <div style="height: 20%;width: 100%;">
-            <h1 style="font-weight: bolder;margin-left: -60px;">Choose few topics that describe your group's interests</h1>
-            <p style="margin-left: 50px;">Be specific! This will help us promote your group to the right people.
-            You can choose up to 10 topics.
-            </p>
-        </div>
-        <ul id="buttons">
-            {% for topic in topics %}
-            <li><a href="#">{{ topic.topic_name }}</a></li>
-            {% endfor %}
-            {{ form.topics }}
-        </ul>
-    </div>
-    <br>
-        <span><a href="#" style="color: rgb(27, 27, 27);text-decoration: none;margin-left: 20px;">Show More</a></span>
-  </div> {% endcomment %}
-
   <!-- Trial Tab -->
   <div class="tab" style="height: fit-content;">
     <div style="margin-top: -40px;width: 109.5%;margin-left: -40px;">
@@ -335,12 +312,6 @@ Styling Google Maps
             </p>
         </div>
         <ul id="buttons">
-            <!-- {% for topic in topics|slice:":5" %}
-              <label class="mein">{{topic.topic_name}}
-                <input type="checkbox" id="topicCheckbox" name="group_topic">
-                <span class="w3docs"></span>
-              </label>
-            {% endfor %} -->
             {{ form.topics }}
         </ul>
     </div>
@@ -357,7 +328,6 @@ Styling Google Maps
             </p>
         </div>
     </div>
-    {% comment %} <p><input type="text" placeholder="Enter group name..." oninput="this.className = ''" name="group_name" required></p> {% endcomment %}
     {{ form.name }}
   </div>
 
