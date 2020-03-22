@@ -1,0 +1,103 @@
+{% extends "base.html" %} {% load static %}
+{% block title %}
+<title>MeetApp | {{ object.name }}</title>
+{% endblock title %}
+{% block content %}
+<div id="div">
+    <div class="g_container">
+        <div id="div1">
+            <img id="g_pic" src="{% static 'images/wallpaper1.jpg' %}" alt="{{ object.name }} Profile">
+        </div>
+        <div id="div2">
+            <h2 style="margin-left: 20px;">{{ object.name.upper }}</h2>
+            <div id="div3">
+                <p><span style="margin-right: 5px;"><img style="height: 20px;width: 20px;" src="{% static 'icons/location.png' %}" alt="location"></span><span></span> {{ object.location.title }}</p>
+                <p style="margin-top: -10px;"><span style="margin-right: 5px;"><img style="height: 20px;width: 20px;" src="{% static 'icons/team.png' %}" alt="location"></span>100k Members <i style="font-size: 7px;color: rgb(56, 55, 55);" class="material-icons">fiber_manual_record</i> Public<span id="qn"><i style="font-size: 16px;color: rgb(194, 183, 183);" class="material-icons">help</i></span></p>
+                <p style="margin-top: -10px;"><span style="margin-right: 5px;"><img style="height: 20px;width: 20px;" src="{% static 'icons/employee.png' %}" alt="location"></span>Organized by <span><a style="font-weight: bold;color: black;text-decoration: none;" href="{% url 'profile' %}">{{ object.organizer_name.username.title }}</a></span></p>
+            </div>
+            <div id="div4">
+                <p><span style="margin-top: 10px;margin-right: 10px;">Share:</span><span><span style="margin-right: 7px;"><a href="#"><img  style="height: 20px;width: 20px;" src="{% static 'icons/twitter.png' %}" alt="twitter"></a></span><span style="margin-right: 7px;"><a href="#"><img  style="height: 20px;width: 20px;" src="{% static 'icons/facebook.png' %}" alt="twitter"></a></span><span style="margin-right: 7px;"><a href="#"><img  style="height: 20px;width: 20px;" src="{% static 'icons/instagram.png' %}" alt="twitter"></a></span></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="tabContainer">
+    <div>
+        <p style="margin-left: 150px;" class="tablink" onclick="openPage('Home', this, 'red')" id="defaultOpen">About</p>
+        <p class="tablink" onclick="openPage('News', this, 'green')">Events</p>
+        <p class="tablink" onclick="openPage('Contact', this, 'blue')">Discussions</p>
+        <p class="tablink" onclick="openPage('About', this, 'orange')">Photos</p>
+
+        <div id="Home" class="tabcontent">
+            <h4 style="font-weight: bold;">What we're about</h4>
+            <p>
+                {{ object.truncatecharsStart }}
+                <!-- Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore harum dicta autem ut! Doloremque cumque quam libero accusamus, perspiciatis id -->
+                <span id="dots">...</span><span id="more">
+                {{ object.truncatecharsEnd }}
+                </span>
+            </p>
+            <p onclick="myFunction()" id="myBtn">Read more</p>
+            <div style="margin-top: 60px;">
+                <h4 style="font-weight: bold;">Upcoming events</h4>
+                <p style="width: 20pxpx;float: right;margin-top: -30px;"><a href="#">See all</a></p>
+                <div id="eventContainer">
+                    <img style="height: 25px;width: 25px;" src="{% static 'icons/event.png' %}" alt="event">
+                    <p>No upcoming events</p>
+                    <p style="margin-top: -17px;">Sometimes organizers needs a little nedge.</p>
+                    <p style="margin-top: -17px;">Anyone with idea? <a href="#">Start a conversation</a></p>
+                </div>
+            </div>
+            <div id="photoContainer">
+                <h4 style="font-weight: bold;">Photos(10)</h4>
+                <p style="width: 50px;float: right;margin-top: -30px;"><a href="#">See all</a></p>
+                <div style="width: 200px;height: 200px;">
+                    <img style="width: 100%;height: 100%;border-radius: 10px;" src="{% static 'icons/legt.png' %}" alt="photo">
+                </div>
+                <div style="width: 200px;height: 200px;margin-left: 215px;margin-top: -200px;">
+                    <img style="width: 100%;height: 100%;border-radius: 10px;" src="{% static 'icons/team.png' %}" alt="photo">
+                </div>
+                <div style="width: 200px;height: 200px;float: right;margin-top: -200px;">
+                    <img style="width: 100%;height: 100%;border-radius: 10px;" src="{% static 'icons/legt.png' %}" alt="photo">
+                </div>
+            </div>
+            <div id="discContainer">
+                <h4 style="font-weight: bold;">Discussions(3)</h4>
+                <div class="chatcontainer">
+                    <img src="{% static 'icons/facebook.png' %}" alt="Avatar" style="width:100%;">
+                    <p>Hello. How are you today?</p>
+                    <span class="time-right">11:00</span>
+                </div>
+                <div class="chatcontainer darker">
+                    <img src="{% static 'icons/facebook.png' %}" alt="Avatar" class="right" style="width:100%;">
+                    <p>Hey! I'm fine. Thanks for asking!</p>
+                    <span class="time-left">11:01</span>
+                </div>
+                <div class="chatcontainer darker">
+                    <img src="{% static 'icons/facebook.png' %}" alt="Avatar" class="right" style="width:100%;">
+                    <p>Hey! I'm fine. Thanks for asking!</p>
+                    <span class="time-left">11:01</span>
+                </div>
+            </div>
+        </div>
+        
+        <div id="News" class="tabcontent">
+            <h3>Events</h3>
+            <p>Events news this fine day!</p> 
+        </div>
+        
+        <div id="Contact" class="tabcontent">
+            <h3>Discussions</h3>
+            <p>Discussions in touch, or swing by for a cup of coffee.</p>
+        </div>
+        
+        <div id="About" class="tabcontent">
+            <h3>Photos</h3>
+            <p>Who we are and what we do.</p>
+        </div>
+    
+        
+    </div>
+</div>
+
+{% endblock content %}

@@ -21,6 +21,15 @@ class MeetAppGroup(models.Model):
     def __str__(self):
         return self.name
     
+    def truncatecharsStart(self):
+        if len(self.desc) > 20:
+            char1 = self.desc[:100]
+        return char1
+    
+    def truncatecharsEnd(self):
+        char2 = self.desc[100:]
+        return char2
+    
 
 # class Organizer(models.Model):
 #     organizer_name = models.OneToOneField(User,on_delete=models.CASCADE,verbose_name="organizer")

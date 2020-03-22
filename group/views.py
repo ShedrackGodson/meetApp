@@ -34,11 +34,11 @@ def groups(request):
     return render(request,"group/create_group.html",context)
 
 
-def group_detail(request):
-    context = {}
+# def group_detail(request):
+#     context = {}
 
-    return render(request, "group/group_details.html",context)
+#     return render(request, "group/group_details.html",context)
 
 
-# class GroupDetailView(DetailView):
-#     model = MeetAppGroup
+class GroupDetailView(DetailView):
+    model = MeetAppGroup

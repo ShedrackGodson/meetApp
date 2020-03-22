@@ -116,7 +116,7 @@ li{
 }
 .g_container {
   max-width: 70%;
-  margin-left: 15%;
+  margin-left: 11%;
   display: block;
   height: 100%;
 }
@@ -148,6 +148,124 @@ li{
 #qn:hover{
   cursor: pointer;
 }
+
+/* Style tab links */
+.tablink {
+  background-color: rgb(247, 244, 244);
+  color: rgb(43, 42, 42);
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 10%;
+}
+
+.tablink:hover {
+  background-color: rgb(247, 244, 244);
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: #000;
+  display: none;
+  padding: 100px 20px;
+  /* height: 80%; */
+}
+#tabContainer {
+  height: 100%;
+  background-color: rgb(247, 244, 244);
+}
+
+#Home {
+  background-color: rgb(247, 244, 244);
+  border: 1px solid black;
+  margin-left: 11%;
+  width: 50%;
+}
+#News {
+  background-color: rgb(247, 244, 244);
+  border: 1px solid black;
+  margin-left: 11%;
+  width: 50%;
+}
+#Contact {
+  background-color: rgb(247, 244, 244);
+  border: 1px solid black;
+  margin-left: 11%;
+  width: 50%;
+}
+#About {
+  background-color: rgb(247, 244, 244);
+  border: 1px solid black;
+  margin-left: 11%;
+  width: 50%;
+}
+#more {
+  display: none;
+}
+#myBtn {
+  color: rgb(42, 73, 248);
+  cursor: pointer;
+  width: 90px;
+}
+#eventContainer {
+  background-color: rgb(233, 233, 233);
+  text-align: center;
+  padding: 5px;
+  margin-top: 15px;
+}
+#photoContainer {
+  margin-top: 60px;
+}
+#discContainer {
+  margin-top: 60px;
+}
+
+.chatcontainer {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.chatcontainer::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.chatcontainer img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.chatcontainer img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+
 </style>
 <body style="height: 100%;">
 {% include "snippets/nav.html" %}
