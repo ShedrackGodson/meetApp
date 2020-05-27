@@ -1,5 +1,5 @@
 from django import forms
-from .models import Topics,MeetAppGroup
+from .models import Topics, MeetAppGroup
 
 
 class GroupCreationForm(forms.ModelForm):

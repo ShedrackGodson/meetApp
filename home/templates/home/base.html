@@ -1,0 +1,485 @@
+{% load bootstrap4 %}
+{% load static %}
+
+<!--
+<!DOCTYPE html>
+<html lang="en" class="full-height" style="height: 100%;font-family: Poppins-Regular;">
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="media/icon.png">
+
+    {% block title %}
+    {% endblock title %}
+
+    <!--Special CSS links-->
+    
+    <!-- Bootstrap CSS -->
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+
+  </head>
+
+<style>
+    /*!
+    * Start Bootstrap - One Page Wonder v5.0.7 (https://startbootstrap.com/template-overviews/one-page-wonder)
+    * Copyright 2013-2019 Start Bootstrap
+    * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-one-page-wonder/blob/master/LICENSE)
+    */
+
+    body {
+      font-family: 'Lato';
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: 'Catamaran';
+      font-weight: 800 !important;
+    }
+
+    .btn-xl {
+      text-transform: uppercase;
+      padding: 1.5rem 3rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.1rem;
+    }
+
+    .bg-black {
+      background-color: #000 !important;
+    }
+
+    .rounded-pill {
+      border-radius: 5rem;
+    }
+
+    .navbar-custom {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .navbar-custom .navbar-brand {
+      text-transform: uppercase;
+      font-size: 1rem;
+      letter-spacing: 0.1rem;
+      font-weight: 700;
+    }
+
+    .navbar-custom .navbar-nav .nav-item .nav-link {
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1rem;
+    }
+
+    header.masthead {
+      position: relative;
+      overflow: hidden;
+      padding-top: calc(7rem + 72px);
+      padding-bottom: 7rem;
+      background: linear-gradient(0deg, #ff6a00 0%, #ee0979 100%);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: scroll;
+      background-size: cover;
+    }
+
+    header.masthead .masthead-content {
+      z-index: 1;
+      position: relative;
+    }
+
+    header.masthead .masthead-content .masthead-heading {
+      font-size: 4rem;
+    }
+
+    header.masthead .masthead-content .masthead-subheading {
+      font-size: 2rem;
+    }
+
+    header.masthead .bg-circle {
+      z-index: 0;
+      position: absolute;
+      border-radius: 100%;
+      background: linear-gradient(0deg, #ee0979 0%, #ff6a00 100%);
+    }
+
+    header.masthead .bg-circle-1 {
+      height: 90rem;
+      width: 90rem;
+      bottom: -55rem;
+      left: -55rem;
+    }
+
+    header.masthead .bg-circle-2 {
+      height: 50rem;
+      width: 50rem;
+      top: -25rem;
+      right: -25rem;
+    }
+
+    header.masthead .bg-circle-3 {
+      height: 20rem;
+      width: 20rem;
+      bottom: -10rem;
+      right: 5%;
+    }
+
+    header.masthead .bg-circle-4 {
+      height: 30rem;
+      width: 30rem;
+      top: -5rem;
+      right: 35%;
+    }
+
+    @media (min-width: 992px) {
+      header.masthead {
+        padding-top: calc(10rem + 55px);
+        padding-bottom: 10rem;
+      }
+      header.masthead .masthead-content .masthead-heading {
+        font-size: 6rem;
+      }
+      header.masthead .masthead-content .masthead-subheading {
+        font-size: 4rem;
+      }
+    }
+
+    .bg-primary {
+      background-color: #ee0979 !important;
+    }
+
+    .btn-primary {
+      background-color: #ee0979;
+      border-color: #ee0979;
+    }
+
+    .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
+      background-color: #bd0760 !important;
+      border-color: #bd0760 !important;
+    }
+
+    .btn-primary:focus {
+      box-shadow: 0 0 0 0.2rem rgba(238, 9, 121, 0.5);
+    }
+
+    .btn-secondary {
+      background-color: #ff6a00;
+      border-color: #ff6a00;
+    }
+
+    .btn-secondary:active, .btn-secondary:focus, .btn-secondary:hover {
+      background-color: #cc5500 !important;
+      border-color: #cc5500 !important;
+    }
+
+    .btn-secondary:focus {
+      box-shadow: 0 0 0 0.2rem rgba(255, 106, 0, 0.5);
+    }
+
+
+    html,body{
+      font-family: Raleway; 
+    }
+
+    .dropbtn {
+      background-color: #f8f9fa !important;
+      color: black;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 100px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    .dropdown-content a:hover {background-color: #ddd;}
+
+    .dropdown:hover .dropdown-content {display: block;}
+
+    .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+    html{ 
+      font-family: Poppins-Regular;
+    }
+    .account-interests-list{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .clearfix::after{
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }
+    #account-unsubscribed-interests .account-interests-items{
+        background: #fff;
+        width: 228px!important;
+        cursor: pointer;
+        border: 1px solid black;
+    }
+    .account-interests-items{
+        float: left;
+        position: relative;
+        /* background: #f2f2f2; */
+        padding: 4px 8px;
+        margin: 0 6px 6px 0;
+        /* width: 236px; */
+        overflow: hidden;
+    }
+
+    .account-interests-list{
+      list-style: none;
+    }
+    .account-interests-items .add_icon {
+      margin-right: 4px;
+    }
+    .add_icon{
+      background-position: 0 0;
+    }
+    .spritebg {
+        display: block;
+        width: 18px;
+        height: 18px;
+        float: left;
+    }
+    .sprite {
+      background-image: url(https://secure.meetupstatic.com/img/1/sprites/sprite.png);
+      background-repeat: no-repeat;
+    }
+
+    #account-unsubscribed-interests .account-interest-name {
+      width: 180px;
+    }
+    .account-interest-name {
+      font-size: 13px;
+      /* width: 208px; */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      cursor: pointer;
+      text-align: -webkit-match-parent;
+      list-style: none;
+    }
+    li{
+      margin: 5px auto;
+    }
+    #div {
+      display: block;
+      border-bottom: 1px solid #dfdfdf;
+      height: 320px;
+    }
+    .g_container {
+      max-width: 70%;
+      margin-left: 11%;
+      display: block;
+      height: 100%;
+    }
+    .g_container div{
+      float: left;
+    }
+    #div1 {
+      width: 55%;
+      height: 300px;
+    }
+    #div2 {
+      width: 45%;
+    }
+    #div3 {
+      margin-top: 20px;
+      width: 70%;
+      margin-left: 20px;
+    }
+    #div4 {
+      margin-top: 50px;
+      margin-left: 20px;
+      width: 70%;
+    }
+    #g_pic {
+      height: 100%;
+      width: 100%;
+      border-radius: 10px;
+    }
+    #qn:hover{
+      cursor: pointer;
+    }
+
+    /* Style tab links */
+    .tablink {
+      background-color: rgb(247, 244, 244);
+      color: rgb(43, 42, 42);
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      font-size: 17px;
+      width: 10%;
+    }
+
+    .tablink:hover {
+      background-color: rgb(247, 244, 244);
+    }
+
+    /* Style the tab content (and add height:100% for full page content) */
+    .tabcontent {
+      color: #000;
+      display: none;
+      padding: 100px 20px;
+      /* height: 80%; */
+    }
+    #tabContainer {
+      height: 100%;
+      background-color: rgb(247, 244, 244);
+    }
+
+    #Home {
+      background-color: rgb(247, 244, 244);
+      border: 1px solid black;
+      margin-left: 11%;
+      width: 50%;
+    }
+    #News {
+      background-color: rgb(247, 244, 244);
+      border: 1px solid black;
+      margin-left: 11%;
+      width: 50%;
+    }
+    #Contact {
+      background-color: rgb(247, 244, 244);
+      border: 1px solid black;
+      margin-left: 11%;
+      width: 50%;
+    }
+    #About {
+      background-color: rgb(247, 244, 244);
+      border: 1px solid black;
+      margin-left: 11%;
+      width: 50%;
+    }
+    #more {
+      display: none;
+    }
+    #myBtn {
+      color: rgb(42, 73, 248);
+      cursor: pointer;
+      width: 90px;
+    }
+    #eventContainer {
+      background-color: rgb(233, 233, 233);
+      text-align: center;
+      padding: 5px;
+      margin-top: 15px;
+    }
+    #photoContainer {
+      margin-top: 60px;
+    }
+    #discContainer {
+      margin-top: 60px;
+    }
+
+    .chatcontainer {
+      border: 2px solid #dedede;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px 0;
+    }
+
+    .darker {
+      border-color: #ccc;
+      background-color: #ddd;
+    }
+
+    .chatcontainer::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    .chatcontainer img {
+      float: left;
+      max-width: 60px;
+      width: 100%;
+      margin-right: 20px;
+      border-radius: 50%;
+    }
+
+    .chatcontainer img.right {
+      float: right;
+      margin-left: 20px;
+      margin-right:0;
+    }
+
+    .time-right {
+      float: right;
+      color: #aaa;
+    }
+
+    .time-left {
+      float: left;
+      color: #999;
+    }
+
+</style>
+
+<body style="height: 100%;">
+
+ <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Start Bootstrap</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Create Group</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Account</a>
+            </li>
+          </ul>
+        </div>
+    </div>
+  </nav>
+
+
+
+{% block content %}
+{% endblock content %}
+
+
+</body>
+</html>
