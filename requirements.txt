@@ -2,7 +2,7 @@ asgiref==3.2.3
 certifi==2019.11.28
 chardet==3.0.4
 defusedxml==0.6.0
-Django==3.0.3
+Django==3.0.7
 django-autoslug-iplweb==1.9.4.dev0
 django-cities==0.6
 django-model-utils==4.0.0
