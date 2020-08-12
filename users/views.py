@@ -82,7 +82,7 @@ def login(request):
             messages.info(request, "Username and/or password are invalid.")
             return redirect("login")
     else:
-        return render(request,'login.html',context)
+        return render(request,'users/login.html',context)
 
 
 def logout(request):

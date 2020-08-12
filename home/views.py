@@ -34,7 +34,7 @@ def home(request):
     context["facebook_login"] = facebook_login
     context["can_disconnect"] = can_disconnect
 
-    return render(request, 'index.html', context)
+    return render(request, 'home/index.html', context)
 
 
 @login_required

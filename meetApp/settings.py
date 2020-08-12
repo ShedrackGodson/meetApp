@@ -26,12 +26,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # My apps
     'home',
     'users',
+    'group',
+    # Thirdparty apps
     'widget_tweaks',
     'social_django',
     'tempus_dominus',
-    'group',
+    'bootstrap4',
 ]
 
 # Django Cities Confs:: Pull out the data of the cities I dont want
@@ -100,7 +103,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'meetapp',
         'HOST': 'localhost',
-        'PASSWORD': 'magnifico23',
+        'PASSWORD': 'D@njuma44!9',
         'USER': 'root'
     }
 }
