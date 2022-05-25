@@ -15,7 +15,7 @@ mysqlclient==1.4.6
 oauthlib==3.1.0
 Pillow==7.0.0
 progressbar2==3.50.0
-PyJWT==1.7.1
+PyJWT==2.4.0
 python-social-auth==0.3.6
 python-utils==2.4.0
 python3-openid==3.1.0
